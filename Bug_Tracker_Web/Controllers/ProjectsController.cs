@@ -2,6 +2,8 @@
 using Bug_Tracker_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
+//test for git
+
 namespace Bug_Tracker_Web.Controllers
 {
     public class ProjectsController : Controller
