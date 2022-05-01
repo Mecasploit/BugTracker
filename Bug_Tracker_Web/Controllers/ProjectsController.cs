@@ -12,7 +12,7 @@ namespace Bug_Tracker_Web.Controllers
         {
             _db = db;
         }
- // GET: CategoryController
+        // GET: CategoryController
         public ActionResult Index()
         {
             List<Projects> objProjectsList = _db.Projects.ToList();
