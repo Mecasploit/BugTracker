@@ -15,12 +15,17 @@ namespace Bug_Tracker_Web.Controllers
         }
 
         // GET: CategoryController
-        public ActionResult Index()
+        public ActionResult Index(int Id)
         {
+            if (Id == null || Id ==0)
+            {
+                return NotFound();
+            }
+            var ProjectFromDb = _db.Projects.Find(Id);
             List<Tickets> objCategoryList = _db.Tickets.ToList(); // there is no sql codes here :)
-            ViewBag.bla = objCategoryList[0].Status;
-            string n = "hay hay tani";
-            ViewData["WalidData"] = "SalamoAlaikom!";
+            ViewBag.Name = ProjectFromDb.Name;
+            ViewBag.Date = ProjectFromDb.DateOfCreation.ToString().Split(" ")[0];
+            ViewData["WalidData"] = "SalamoAlaikom test!";
             return View(objCategoryList);
         }
 
