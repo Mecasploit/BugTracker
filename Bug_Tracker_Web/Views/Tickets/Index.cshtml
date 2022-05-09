@@ -37,11 +37,7 @@
         <div class="row">
             <div class="col-6">
                 <label class="text-primary">
-                    @{
-                        string StatusValue = "The Status is : ";
-                        StatusValue += ViewBag.Name;
-                    }
-                    <label class="text-secondary p-1 mt-1">@StatusValue</label>
+                    <label class="text-secondary p-1 mt-1">@ViewBag.Status</label>
                 </Label>
             </div>
             <div class="col-6">

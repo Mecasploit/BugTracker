@@ -26,7 +26,7 @@ namespace Bug_Tracker_Web.Controllers
             // Select from the Tickets only the ones related to the sent project
             List<Tickets> objCategoryList = _db.Tickets.Where(b => b.ProjectId == Id).ToList();
 
-            ViewBag.Name = ProjectFromDb.Name;
+            ViewBag.Status = ProjectFromDb.Status;
             ViewBag.Date = ProjectFromDb.DateOfCreation.ToString().Split(" ")[0];
             ViewData["WalidData"] = "SalamoAlaikom test!";
 

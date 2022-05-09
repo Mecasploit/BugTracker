@@ -17,7 +17,7 @@ namespace Bug_Tracker_Web.Models
         [Display(Name="Date of cration")]
         public DateTime DateOfCreation { get; set; }= DateTime.Now;
         public string? Description { get; set; }
-        //public string? Status { get; set; }
+        public string? Status { get; set; }
         
     }
 }
