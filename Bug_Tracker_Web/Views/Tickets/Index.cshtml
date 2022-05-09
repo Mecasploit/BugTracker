@@ -8,7 +8,7 @@
 <div class="row">
     <div class="border p-3 mt-4 col-5">
         <div class="row pb-2">
-            <h2 class="text-primary">Sofon 2.0 Project</h2>
+            <h2 class="text-primary">@ViewBag.Name</h2>
         </div>
         <div class="row">
             <div class="col-6">
@@ -37,15 +37,11 @@
         <div class="row">
             <div class="col-6">
                 <label class="text-primary">
-                    @{
-                        string StatusValue = "The Status is : ";
-                        StatusValue += ViewBag.bla;
-                    }
-                    <label class="text-secondary p-1 mt-1">@StatusValue</label>
+                    <label class="text-secondary p-1 mt-1">@ViewBag.Status</label>
                 </Label>
             </div>
             <div class="col-6">
-                <label class="text-secondary p-1 mt-1">22/04/2022</</label>
+                <label class="text-secondary p-1 mt-1">@ViewBag.Date</</label>
             </div>
         </div>
         @*<button type="submit" class="btn btn-primary" style="width:150px">Update</button>

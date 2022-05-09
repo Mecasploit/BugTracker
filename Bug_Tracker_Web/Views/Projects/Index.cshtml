@@ -12,7 +12,7 @@
         <div class="container p-3">
         <div class="row pt-4">
             <div class="col-6">
-                <h2 class="text-primary">Projects List</h2>
+                <h2 class="text-primary">Projects</h2>
             </div>
             <div class="col-6 text-end">
                 <a asp-controller="Projects" asp-action="Create" class="btn btn-primary">
@@ -34,6 +34,9 @@
                 <th>
                     Description
                 </th>
+                <th>
+                    Status
+                </th>
             </tr>
         </thead>
 
@@ -41,26 +44,29 @@
             @foreach(var obj in Model)
             {
                 <tr>  
-                    <td width="25%">
+                    <td width="20%">
                         @obj.Name
                     </td>
-                    <td width="25%">
+                    <td width="18%">
                         @obj.DateOfCreation.ToString().Split(" ")[0]
                     </td>
-                    <td width="25%">
+                    <td width="20%">
                         @obj.Description
                     </td>
-                    <td width="25%">
+                    <td width="18%">
+                        @obj.Status
+                    </td>
+                    <td width="24%">
                         <div class="w-10 btn btn-rouge" role="group">
 
                             <a asp-controller="Tickets" asp-action="Index" asp-route-id="@obj.Id"
-                            class="btn btn-success">Open</a>
+                            style="width:80px" class="btn btn-success">Open</a>
 
                             <a asp-controller="Projects" asp-action="Index" asp-route-id="@obj.Id"
-                            class="btn btn-primary">Edit</a>
+                            style="width:80px" class="btn btn-primary">Edit</a>
 
                             <a asp-controller="Projects" asp-action="Index" asp-route-id="@obj.Id"
-                            class="btn btn-danger">Delete</a>
+                            style="width:80px" class="btn btn-danger">Delete</a>
 
                         </div>
                     </td>
