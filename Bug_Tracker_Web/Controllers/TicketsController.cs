@@ -21,11 +21,15 @@ namespace Bug_Tracker_Web.Controllers
             {
                 return NotFound();
             }
+
             var ProjectFromDb = _db.Projects.Find(Id);
-            List<Tickets> objCategoryList = _db.Tickets.ToList(); // there is no sql codes here :)
+            // Select from the Tickets only the ones related to the sent project
+            List<Tickets> objCategoryList = _db.Tickets.Where(b => b.ProjectId == Id).ToList();
+
             ViewBag.Name = ProjectFromDb.Name;
             ViewBag.Date = ProjectFromDb.DateOfCreation.ToString().Split(" ")[0];
             ViewData["WalidData"] = "SalamoAlaikom test!";
+
             return View(objCategoryList);
         }
 
