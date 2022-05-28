@@ -1,0 +1,82 @@
+﻿@model Tickets
+
+<form method="post">
+    <div class="row border p-3 mt-4">
+        
+        <div class="row pb-2">
+            <h2 class="col-12 text-primary">Create a ticket</h2>
+        </div>
+
+        <div class="row pb-2">
+            @*<div asp-validation-summary = "All"></div>*@
+            <div class="col-4">
+                <div class="mb-3">
+                    <label asp-for="Issue"></label>
+                    <input asp-for="Issue" class="form-control" />
+                    <span asp-validation-for="Issue" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for ="Priority"></label>
+                    <input asp-for="Priority" class="form-control" />
+                    <span asp-validation-for="Priority" class="text-danger"></span>
+                </div>
+                @*<div class="mb-3">
+                    <label asp-for ="Owner"></label>
+                    <input asp-for="Owner" class="form-control" />
+                    <span asp-validation-for="Owner" class="text-danger"></span>
+                </div>*@
+                <div class="mb-3">
+                    <label asp-for ="Assignee"></label>
+                    <input asp-for="Assignee" class="form-control" />
+                    <span asp-validation-for="Assignee" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for ="Status"></label>
+                    <input asp-for="Status" class="form-control" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-8">
+                <div class="form-group mb-3">
+                    <label asp-for="Description">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" style="height: 194px; resize:none;"></textarea>
+                    @*<label for="exampleTextarea" class="form-label mt-4">Example textarea</label>
+                    <textarea class="form-control" id="exampleTextarea" rows="3" style="height: 150px;"></textarea>*@
+                </div>
+
+                @*<div class="form-gourp mb-3">
+                    <label asp-for="Attachments"></label>
+                    <input asp-for="Attachments" class="form-control" type="file" id="formFile">
+                </div>*@
+            </div>
+
+            <div class="row">
+                <div class="form-gourp pt-4 text-center">
+                    @*The Create button here is directly linked to the tag helpers -> i still need to understand why and how!?*@
+                    <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+                    <a asp-controller="Tickets" asp-action="Index" asp-route-id="@ViewBag.ProjectId" class="btn btn-secondary" style ="width:150px">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        @*<div class="row">
+            
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+                <a asp-controller="Tickets" asp-action="Index" asp-route-id="@ViewBag.ProjectId" class="btn btn-secondary" style ="width:150px">
+                    Back to List
+                </a>
+            </div>
+        </div>*@
+    
+    </div>
+</form>
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}
