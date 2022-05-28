@@ -9,9 +9,10 @@ namespace Bug_Tracker_Web.Controllers
     {
         private readonly ApplicationDbContext _db;
 
+
         public TicketsController(ApplicationDbContext db) // here i can access what is in the container! 
         {
-            _db = db; 
+            _db = db;
         }
 
         // GET: CategoryController
@@ -23,41 +24,53 @@ namespace Bug_Tracker_Web.Controllers
             }
 
             var ProjectFromDb = _db.Projects.Find(Id);
-            // Select from the Tickets only the ones related to the sent project
-            List<Tickets> objCategoryList = _db.Tickets.Where(b => b.ProjectId == Id).ToList();
 
             ViewBag.Status = ProjectFromDb.Status;
             ViewBag.Date = ProjectFromDb.DateOfCreation.ToString().Split(" ")[0];
             ViewData["WalidData"] = "SalamoAlaikom test!";
+            ViewBag.ProjectId = Id;
 
-            return View(objCategoryList);
+            // Select from the Tickets only the ones related to the sent project
+            List<Tickets> TicketsList = _db.Tickets.Where(b => b.ProjectId == Id).ToList();
+
+            return View(TicketsList);
         }
 
         // GET
-        public ActionResult Create()
-        { 
+        //lorsque je mettais une autre appelation cela n'a pas marché !!
+        // the ansewer : //https://stackoverflow.com/questions/155864/asp-net-mvc-passing-parameters-to-the-controller
+        public ActionResult Create(int Id)  
+        {
+            Console.WriteLine($"The Id i'm getting is {Id}");
+            ViewBag.ProjectId = Id;
             return View();
         }
-        /*
-        // POST: CategoryController/Create
+
+        //// POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken] // to avoid Cross Site Requist Forgery...
         public ActionResult Create(Tickets obj)
         {
-            if(obj.Name == obj.DisplayOrder.ToString())
+            if (obj.Priority != "1" && obj.Priority != "2" && obj.Priority !="3")
             {
-                ModelState.AddModelError("CustomError", "wa sir tqaewd rahoum fhal fhal.");
+                ModelState.AddModelError("CustomError", "the priority is not valid you should enter 1, 2 or 3");
             }
             if (ModelState.IsValid)
             {
                 _db.Tickets.Add(obj);
+                Console.WriteLine("the issu is : " + obj.Issue);
+                Console.WriteLine("the Id is "+obj.Id);
+                Console.WriteLine("the Description is "+obj.Description);
+                Console.WriteLine("the owner is "+obj.Owner);
+                Console.WriteLine("the date of Creation is " + obj.Create);
+                Console.WriteLine("the project Id is " + obj.ProjectId);
                 _db.SaveChanges();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
         }
-
+        /*
         // GET
         public ActionResult Edit(int? id)
         {
